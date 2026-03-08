@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Tor Checker</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111827;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #7C4DFF;
+      --border: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.7; padding: 24px 16px;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    header { text-align: center; padding: 40px 0 32px; }
+    header img { width: 80px; height: 80px; border-radius: 18px; margin-bottom: 16px; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .subtitle { color: var(--muted); margin-top: 8px; }
+    .lang-switch {
+      display: flex; gap: 8px; justify-content: center; margin: 16px 0 32px;
+    }
+    .lang-switch a {
+      padding: 6px 16px; border-radius: 20px; text-decoration: none;
+      border: 1px solid var(--accent); color: var(--accent); font-size: 14px;
+    }
+    .lang-switch a.active { background: var(--accent); color: #fff; }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+    section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px; margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 1.1rem; font-weight: 600; color: var(--accent);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    p { color: var(--text); margin-bottom: 10px; }
+    ul { padding-left: 20px; color: var(--text); }
+    ul li { margin-bottom: 6px; }
+    .badge {
+      display: inline-block; background: #1e293b; color: var(--muted);
+      border-radius: 6px; padding: 2px 8px; font-size: 12px; font-family: monospace;
+    }
+    footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 0 16px; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🧅 Tor Checker</h1>
+    <p class="subtitle">Privacy Policy</p>
+    <p class="subtitle" style="font-size:13px; margin-top:4px;">
+      Ultimo aggiornamento / Last updated: 2026-03-02
+    </p>
+  </header>
+
+  <div class="lang-switch">
+    <a href="#" class="active" onclick="showLang('it', this)">🇮🇹 Italiano</a>
+    <a href="#" onclick="showLang('en', this)">🇬🇧 English</a>
+  </div>
+
+  <!-- ───────────── ITALIANO ───────────── -->
+  <div id="lang-it" class="lang-section active">
+
+    <section>
+      <h2>📋 Introduzione</h2>
+      <p>
+        <strong>Tor Checker</strong> è uno strumento <strong>educativo</strong> open-source per Android
+        che ti aiuta a capire se la tua connessione passa davvero attraverso la rete Tor tramite Orbot,
+        e a scoprire eventuali perdite (DNS leak, WebRTC leak, ecc.).
+        L'app non garantisce anonimato: i risultati sono indicativi e a scopo didattico.
+      </p>
+    </section>
+
+    <section>
+      <h2>🔍 Dati raccolti</h2>
+      <p>L'app <strong>non raccoglie, memorizza né trasmette</strong> dati personali a server di terze parti.</p>
+      <p>Durante l'utilizzo, l'app effettua le seguenti richieste di rete per eseguire i controlli:</p>
+      <ul>
+        <li>Connessione TCP a <span class="badge">127.0.0.1:9050</span> (Orbot locale) per verificarne lo stato</li>
+        <li>Richiesta a <span class="badge">check.torproject.org/api/ip</span> per ottenere l'IP Tor e verificare l'uso di Tor</li>
+        <li>Richiesta a <span class="badge">api.ipify.org</span>, <span class="badge">api4.my-ip.io</span>, <span class="badge">api.myip.com</span> per il DNS leak test (via proxy Tor)</li>
+        <li>Richiesta a <span class="badge">ipapi.co</span> per la geolocalizzazione dell'IP (città e paese) — effettuata in <strong>connessione diretta</strong>, non tramite proxy Tor</li>
+        <li>Connessione all'indirizzo <span class="badge">.onion</span> inserito dall'utente (via Orbot)</li>
+        <li>Pacchetto UDP a <span class="badge">stun.cloudflare.com:3478</span> e <span class="badge">stun.stunprotocol.org:3478</span> per il WebRTC leak test (connessione diretta, bypassa il proxy)</li>
+      </ul>
+      <p>Le richieste HTTP vengono effettuate <strong>tramite il proxy SOCKS5 di Orbot</strong> salvo dove indicato. Il test WebRTC usa UDP diretto per rilevare leak. Nessun dato viene salvato sul dispositivo oltre alle preferenze di tema e lingua.</p>
+    </section>
+
+    <section>
+      <h2>💾 Dati salvati localmente</h2>
+      <p>L'app salva nelle preferenze del dispositivo (<em>SharedPreferences</em>) unicamente:</p>
+      <ul>
+        <li>Tema scelto (Sistema / Chiaro / Scuro)</li>
+        <li>Lingua scelta (Italiano / English)</li>
+        <li>Flag onboarding completato</li>
+      </ul>
+      <p>Questi dati non vengono mai inviati a server esterni.</p>
+    </section>
+
+    <section>
+      <h2>🌐 Servizi di terze parti</h2>
+      <p>L'app interagisce con i seguenti servizi esclusivamente per effettuare i controlli tecnici:</p>
+      <ul>
+        <li><strong>TorProject</strong> – <a href="https://check.torproject.org">check.torproject.org</a> — verifica ufficiale Tor (via proxy)</li>
+        <li><strong>ipify</strong> – <a href="https://api.ipify.org">api.ipify.org</a> — rilevamento IP reale (connessione diretta)</li>
+        <li><strong>ipapi.co</strong> – <a href="https://ipapi.co">ipapi.co</a> — geolocalizzazione IP: città e paese (connessione diretta, primario)</li>
+        <li><strong>ip-api.com</strong> – <a href="http://ip-api.com">ip-api.com</a> — geolocalizzazione IP: città e paese (connessione diretta, usato solo come fallback se ipapi.co non risponde)</li>
+        <li><strong>My-IP.io</strong> – <a href="https://api4.my-ip.io">api4.my-ip.io</a> — DNS leak test (via proxy)</li>
+        <li><strong>MyIP.com</strong> – <a href="https://api.myip.com">api.myip.com</a> — DNS leak test (via proxy)</li>
+        <li><strong>Cloudflare STUN</strong> – <span class="badge">stun.cloudflare.com:3478</span> — WebRTC leak test (UDP diretto)</li>
+        <li><strong>stunprotocol.org</strong> – <span class="badge">stun.stunprotocol.org:3478</span> — WebRTC leak test, fallback (UDP diretto)</li>
+      </ul>
+      <p>Le richieste dirette (IP reale, geolocalizzazione, WebRTC) non passano per Tor e potrebbero essere visibili al provider di rete. Consulta le rispettive privacy policy per dettagli.</p>
+    </section>
+
+    <section>
+      <h2>🔔 Notifiche</h2>
+      <p>L'app può inviare notifiche push locali per avvisare quando il proxy SOCKS5 o la VPN Orbot vengono disattivati. Le notifiche sono generate localmente sul dispositivo e non coinvolgono server esterni.</p>
+    </section>
+
+    <section>
+      <h2>👶 Minori</h2>
+      <p>L'app non è destinata a minori di 13 anni e non raccoglie consapevolmente dati di minori.</p>
+    </section>
+
+    <section>
+      <h2>✏️ Modifiche</h2>
+      <p>Questa privacy policy potrebbe essere aggiornata. Le modifiche saranno pubblicate su questa pagina con data aggiornata.</p>
+    </section>
+
+    <section>
+      <h2>📬 Contatti</h2>
+      <p>Per domande sulla privacy, apri una issue su GitHub o contattaci tramite il Play Store.</p>
+    </section>
+
+  </div>
+
+  <!-- ───────────── ENGLISH ───────────── -->
+  <div id="lang-en" class="lang-section">
+
+    <section>
+      <h2>📋 Introduction</h2>
+      <p>
+        <strong>Tor Checker</strong> is an open-source <strong>educational</strong> tool for Android
+        that helps you understand whether your connection is actually routed through the Tor network via Orbot,
+        and to discover potential leaks (DNS leak, WebRTC leak, etc.).
+        The app does not guarantee anonymity: results are indicative and intended for learning purposes.
+      </p>
+    </section>
+
+    <section>
+      <h2>🔍 Data collected</h2>
+      <p>This app <strong>does not collect, store, or transmit</strong> personal data to third-party servers.</p>
+      <p>During use, the app makes the following network requests to run the checks:</p>
+      <ul>
+        <li>TCP connection to <span class="badge">127.0.0.1:9050</span> (local Orbot) to check its status</li>
+        <li>Request to <span class="badge">check.torproject.org/api/ip</span> to get the Tor IP and verify Tor usage</li>
+        <li>Request to <span class="badge">api.ipify.org</span>, <span class="badge">api4.my-ip.io</span>, <span class="badge">api.myip.com</span> for DNS leak test (via Tor proxy)</li>
+        <li>Request to <span class="badge">ipapi.co</span> for IP geolocation (city and country) — made via <strong>direct connection</strong>, not through the Tor proxy</li>
+        <li>Connection to the user-entered <span class="badge">.onion</span> address (via Orbot)</li>
+        <li>UDP packet to <span class="badge">stun.cloudflare.com:3478</span> and <span class="badge">stun.stunprotocol.org:3478</span> for the WebRTC leak test (direct connection, bypasses proxy)</li>
+      </ul>
+      <p>HTTP requests are routed <strong>through Orbot's SOCKS5 proxy</strong> unless otherwise noted. The WebRTC test uses direct UDP to detect leaks. No data is stored on the device beyond theme and language preferences.</p>
+    </section>
+
+    <section>
+      <h2>💾 Locally stored data</h2>
+      <p>The app stores only the following in device preferences (<em>SharedPreferences</em>):</p>
+      <ul>
+        <li>Chosen theme (System / Light / Dark)</li>
+        <li>Chosen language (Italiano / English)</li>
+        <li>Onboarding completed flag</li>
+      </ul>
+      <p>This data is never sent to external servers.</p>
+    </section>
+
+    <section>
+      <h2>🌐 Third-party services</h2>
+      <p>The app interacts with the following services solely for technical checks:</p>
+      <ul>
+        <li><strong>TorProject</strong> – <a href="https://check.torproject.org">check.torproject.org</a> — official Tor verification (proxied)</li>
+        <li><strong>ipify</strong> – <a href="https://api.ipify.org">api.ipify.org</a> — real IP detection (direct connection)</li>
+        <li><strong>ipapi.co</strong> – <a href="https://ipapi.co">ipapi.co</a> — IP geolocation: city and country (direct connection, primary)</li>
+        <li><strong>ip-api.com</strong> – <a href="http://ip-api.com">ip-api.com</a> — IP geolocation: city and country (direct connection, used only as fallback if ipapi.co is unavailable)</li>
+        <li><strong>My-IP.io</strong> – <a href="https://api4.my-ip.io">api4.my-ip.io</a> — DNS leak test (proxied)</li>
+        <li><strong>MyIP.com</strong> – <a href="https://api.myip.com">api.myip.com</a> — DNS leak test (proxied)</li>
+        <li><strong>Cloudflare STUN</strong> – <span class="badge">stun.cloudflare.com:3478</span> — WebRTC leak test (direct UDP)</li>
+        <li><strong>stunprotocol.org</strong> – <span class="badge">stun.stunprotocol.org:3478</span> — WebRTC leak test, fallback (direct UDP)</li>
+      </ul>
+      <p>Direct requests (real IP, geolocation, WebRTC) do not go through Tor and may be visible to your network provider. Please review their respective privacy policies for details.</p>
+    </section>
+
+    <section>
+      <h2>🔔 Notifications</h2>
+      <p>The app may send local push notifications to alert you when the SOCKS5 proxy or Orbot VPN is deactivated. Notifications are generated locally on the device and do not involve external servers.</p>
+    </section>
+
+    <section>
+      <h2>👶 Children</h2>
+      <p>This app is not intended for children under 13 and does not knowingly collect data from minors.</p>
+    </section>
+
+    <section>
+      <h2>✏️ Changes</h2>
+      <p>This privacy policy may be updated. Changes will be posted on this page with an updated date.</p>
+    </section>
+
+    <section>
+      <h2>📬 Contact</h2>
+      <p>For privacy-related questions, open an issue on GitHub or contact us via the Play Store listing.</p>
+    </section>
+
+  </div>
+
+  <footer>© 2026 Tor Checker · <a href="https://github.com">GitHub</a></footer>
+</div>
+
+<script>
+  function showLang(lang, el) {
+    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.lang-switch a').forEach(a => a.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    el.classList.add('active');
+    return false;
+  }
+</script>
+</body>
+</html>
