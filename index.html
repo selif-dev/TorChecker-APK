@@ -190,6 +190,13 @@
     .lang-section { display: none; }
     .lang-section.active { display: contents; }
 
+    .dl-count {
+      margin-top: 16px;
+      font-size: 13px; color: var(--muted);
+      display: none;
+    }
+    .dl-count-num { color: var(--accent); font-weight: 700; }
+
     @media (max-width: 600px) {
       .nav-links a:not(.nav-logo) { display: none; }
       .hero { padding: 64px 16px 56px; }
@@ -228,6 +235,7 @@
         ☕ Supporta le idee
       </a>
     </div>
+    <p class="dl-count" id="dl-count-hero-it">⬇ <span class="dl-count-num" id="dl-num-hero-it"></span> download</p>
     <div class="edu-badge">⚠️ Strumento didattico — non garantisce anonimato completo</div>
   </div>
 
@@ -244,6 +252,7 @@
         ☕ Support the ideas
       </a>
     </div>
+    <p class="dl-count" id="dl-count-hero-en">⬇ <span class="dl-count-num" id="dl-num-hero-en"></span> downloads</p>
     <div class="edu-badge">⚠️ Educational tool — does not guarantee complete anonymity</div>
   </div>
 </div>
@@ -593,6 +602,7 @@
       <a class="btn btn-primary" href="https://github.com/selif-dev/TorChecker-APK/releases/download/v1.0/TorChecker_v1.0.0.apk">⬇ Scarica APK</a>
       <a class="btn btn-donate" href="https://donate.selif.org" target="_blank">☕ Supporta le idee</a>
     </div>
+    <p class="dl-count" id="dl-count-cta-it">⬇ <span class="dl-count-num" id="dl-num-cta-it"></span> download</p>
   </div>
   <div class="lang-section" id="cta-en">
     <h2>Ready to test your connection?</h2>
@@ -601,6 +611,7 @@
       <a class="btn btn-primary" href="https://github.com/selif-dev/TorChecker-APK/releases/download/v1.0/TorChecker_v1.0.0.apk">⬇ Download APK</a>
       <a class="btn btn-donate" href="https://donate.selif.org" target="_blank">☕ Support the ideas</a>
     </div>
+    <p class="dl-count" id="dl-count-cta-en">⬇ <span class="dl-count-num" id="dl-num-cta-en"></span> downloads</p>
   </div>
 </div>
 
@@ -640,6 +651,27 @@
 
     document.documentElement.lang = currentLang;
   }
+
+  async function loadDownloadCount() {
+    try {
+      const res = await fetch('https://api.github.com/repos/selif-dev/TorChecker-APK/releases', {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+      if (!res.ok) return;
+      const releases = await res.json();
+      let total = 0;
+      releases.forEach(r => r.assets.forEach(a => { total += a.download_count; }));
+      if (total === 0) return;
+      const fmt = total.toLocaleString();
+      ['hero-it', 'hero-en', 'cta-it', 'cta-en'].forEach(suffix => {
+        const num = document.getElementById('dl-num-' + suffix);
+        const wrap = document.getElementById('dl-count-' + suffix);
+        if (num && wrap) { num.textContent = fmt; wrap.style.display = ''; }
+      });
+    } catch (_) {}
+  }
+
+  loadDownloadCount();
 </script>
 </body>
 </html>
