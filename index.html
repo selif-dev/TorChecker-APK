@@ -666,7 +666,7 @@
       ['hero-it', 'hero-en', 'cta-it', 'cta-en'].forEach(suffix => {
         const num = document.getElementById('dl-num-' + suffix);
         const wrap = document.getElementById('dl-count-' + suffix);
-        if (num && wrap) { num.textContent = fmt; wrap.style.display = ''; }
+        if (num && wrap) { num.textContent = fmt; wrap.style.display = 'block'; }
       });
     } catch (_) {}
   }
