@@ -664,7 +664,8 @@
   async function loadDownloadCount() {
     try {
       const res = await fetch('https://api.github.com/repos/selif-dev/TorChecker-APK/releases', {
-        headers: { 'Accept': 'application/vnd.github+json' }
+        headers: { 'Accept': 'application/vnd.github+json' },
+        cache: 'no-store'
       });
       if (!res.ok) return;
       const releases = await res.json();
