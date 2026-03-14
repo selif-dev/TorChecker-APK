@@ -190,22 +190,6 @@
     .lang-section { display: none; }
     .lang-section.active { display: contents; }
 
-    .dl-count {
-      display: none;
-      margin-top: 18px;
-      text-align: center;
-    }
-    .dl-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(124,77,255,0.08);
-      border: 1px solid rgba(124,77,255,0.22);
-      border-radius: 24px;
-      padding: 8px 20px;
-      font-size: 14px; color: var(--muted);
-    }
-    .dl-badge-icon { font-size: 15px; }
-    .dl-count-num { color: var(--accent); font-weight: 800; font-size: 16px; }
-
     @media (max-width: 600px) {
       .nav-links a:not(.nav-logo) { display: none; }
       .hero { padding: 64px 16px 56px; }
@@ -244,7 +228,6 @@
         ☕ Supporta le idee
       </a>
     </div>
-    <div class="dl-count" id="dl-count-hero-it"><div class="dl-badge"><span class="dl-badge-icon">⬇</span><span class="dl-count-num" id="dl-num-hero-it"></span><span id="dl-label-hero-it">download</span></div></div>
     <div class="edu-badge">⚠️ Strumento didattico — non garantisce anonimato completo</div>
   </div>
 
@@ -261,7 +244,6 @@
         ☕ Support the ideas
       </a>
     </div>
-    <div class="dl-count" id="dl-count-hero-en"><div class="dl-badge"><span class="dl-badge-icon">⬇</span><span class="dl-count-num" id="dl-num-hero-en"></span><span id="dl-label-hero-en">downloads</span></div></div>
     <div class="edu-badge">⚠️ Educational tool — does not guarantee complete anonymity</div>
   </div>
 </div>
@@ -611,7 +593,6 @@
       <a class="btn btn-primary" href="https://github.com/selif-dev/TorChecker-APK/releases/download/v1.0/TorChecker_v1.0.0.apk">⬇ Scarica APK</a>
       <a class="btn btn-donate" href="https://donate.selif.org" target="_blank">☕ Supporta le idee</a>
     </div>
-    <div class="dl-count" id="dl-count-cta-it"><div class="dl-badge"><span class="dl-badge-icon">⬇</span><span class="dl-count-num" id="dl-num-cta-it"></span><span id="dl-label-cta-it">download</span></div></div>
   </div>
   <div class="lang-section" id="cta-en">
     <h2>Ready to test your connection?</h2>
@@ -620,7 +601,6 @@
       <a class="btn btn-primary" href="https://github.com/selif-dev/TorChecker-APK/releases/download/v1.0/TorChecker_v1.0.0.apk">⬇ Download APK</a>
       <a class="btn btn-donate" href="https://donate.selif.org" target="_blank">☕ Support the ideas</a>
     </div>
-    <div class="dl-count" id="dl-count-cta-en"><div class="dl-badge"><span class="dl-badge-icon">⬇</span><span class="dl-count-num" id="dl-num-cta-en"></span><span id="dl-label-cta-en">downloads</span></div></div>
   </div>
 </div>
 
@@ -661,34 +641,6 @@
     document.documentElement.lang = currentLang;
   }
 
-  async function loadDownloadCount() {
-    try {
-      const res = await fetch('https://api.github.com/repos/selif-dev/TorChecker-APK/releases', {
-        headers: { 'Accept': 'application/vnd.github+json' },
-        cache: 'no-store'
-      });
-      if (!res.ok) return;
-      const releases = await res.json();
-      let total = 0;
-      releases.forEach(r => r.assets.forEach(a => { total += a.download_count; }));
-      if (total === 0) return;
-      const fmt = total.toLocaleString();
-      ['hero-it', 'hero-en', 'cta-it', 'cta-en'].forEach(suffix => {
-        const num = document.getElementById('dl-num-' + suffix);
-        const wrap = document.getElementById('dl-count-' + suffix);
-        const label = document.getElementById('dl-label-' + suffix);
-        if (num && wrap) {
-          num.textContent = fmt;
-          if (label && suffix.endsWith('-en')) {
-            label.textContent = total === 1 ? 'download' : 'downloads';
-          }
-          wrap.style.display = 'block';
-        }
-      });
-    } catch (_) {}
-  }
-
-  loadDownloadCount();
 </script>
 </body>
 </html>
